@@ -1,14 +1,15 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { connect } from "react-redux";
 
+import "./JobList.css";
 import { getJobs } from "../../../actions";
 
 const JobList = ({ jobs, total_num, loading }) => {
 
     return (
         !loading ?
-            <div>
-                {total_num} jobs found 
+            <div className="JobList">
+                <div className="JobsFound">{total_num} jobs found</div> 
                 <ul>
                     {jobs.map(job => <li key={job.id}>{job.job_title}</li>)}
                 </ul>   

@@ -16,8 +16,6 @@ export default (state = initialState, action) => {
             return { ...state, loading: true};
         case JOBS_RECEIVED:
             const { page, total_num, jobs, total_pages } = action.data
-            console.log(action.data);
-            
             return {
                 ...state,
                 loading: false,
