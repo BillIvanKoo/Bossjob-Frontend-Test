@@ -1,6 +1,7 @@
 .Pagination {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    width: 100%;
 }
 
 .Pagination button {
@@ -11,6 +12,7 @@
     font-size: 14px;
     background-color: rgba(0, 0, 0, 0);
     outline: none;
+    margin: 0 4px;
 }
 
 .Pagination button:not([disabled]):hover{

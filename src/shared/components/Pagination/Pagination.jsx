@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 
 import "./Pagination.css"
@@ -11,6 +11,9 @@ const Pagination = ({ page, changePage, total_pages }) => {
     }
 
     const handlePageRange = () => {
+        if (total_pages < 5) {
+            return range(total_pages, 1)
+        }
         if (page === 4){
             return range(6, 1)
         } else if (page === total_pages - 3){
@@ -32,7 +35,7 @@ const Pagination = ({ page, changePage, total_pages }) => {
                 <button className={pageNo===page?"active":null} key={pageNo} onClick={()=>{changePage(pageNo)}}>{pageNo}</button>
             ))}
             {page < total_pages - 3 ? <><button disabled>...</button><button onClick={()=>{changePage(total_pages)}}>{total_pages}</button></>:<></>}
-            {page === total_pages ?  <></>:<button onClick={()=>{changePage(page+1)}}>{">"}</button>}
+            {page === total_pages || !(total_pages > 0) ?  <></>:<button onClick={()=>{changePage(page+1)}}>{">"}</button>}
         </div>
     )
     
