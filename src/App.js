@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 
 import Header from './shared/components/Header'
+import JobList from './shared/components/JobList';
 
 class App extends Component {
   render() {
@@ -13,6 +14,7 @@ class App extends Component {
             <p>
               Please show a list of jobs as per design
             </p>
+            <JobList/>
           </div>
         </div>
       </div>
