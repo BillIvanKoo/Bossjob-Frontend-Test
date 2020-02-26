@@ -3,7 +3,7 @@ import { JOBS_RECEIVED, GET_JOBS } from '../actions/constants';
 
 function* fetchJobs(action) {
     const { page, query, size } = yield select(state=>state);
-    const json = yield fetch(`https://search.bossjob.com/api/v1/search/job_filter?size=${size}&page=${page}&${query?"query="+query:""}`);
+    const json = yield fetch(`https://search.bossjob.com/api/v1/search/job_filter?size=${size}&page=${page}${query?"&query="+query:""}`);
     const data = (yield json.json()).data;
     
     yield put({

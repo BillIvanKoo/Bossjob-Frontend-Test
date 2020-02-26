@@ -3,21 +3,24 @@ import { connect } from "react-redux";
 
 import { getJobs } from "../../../actions";
 
-const JobList = ({ jobs, getJobs }) => {
-    
-    useEffect(() => {
-        getJobs()
-    }, [])
+const JobList = ({ jobs, total_num, loading }) => {
 
     return (
-        <ul>
-            {jobs.map(job => <li key={job.id}>{job.job_title}</li>)}
-        </ul>
+        !loading ?
+            <div>
+                {total_num} jobs found 
+                <ul>
+                    {jobs.map(job => <li key={job.id}>{job.job_title}</li>)}
+                </ul>   
+            </div>
+        : null
     )
 }
 
-const mapStateToProps = state => ({
-    jobs: state.jobs
+const mapStateToProps = ({jobs, total_num, loading}) => ({
+    jobs,
+    total_num,
+    loading
 })
 
 const mapDispatchToProps = {
