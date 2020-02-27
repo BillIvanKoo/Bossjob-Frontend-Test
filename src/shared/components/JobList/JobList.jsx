@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 
 import "./JobList.css";
 import { getJobs } from "../../../actions";
+import JobCard from '../JobCard';
 
 const JobList = ({ jobs, total_num, loading }) => {
 
@@ -10,9 +11,9 @@ const JobList = ({ jobs, total_num, loading }) => {
         !loading ?
             <div className="JobList">
                 <div className="JobsFound">{total_num} jobs found</div> 
-                <ul>
-                    {jobs.map(job => <li key={job.id}>{job.job_title}</li>)}
-                </ul>   
+                <div>
+                    {jobs.map(job => <JobCard key={job.id} job={job}/>)}
+                </div>   
             </div>
         : null
     )
