@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import "./JobList.css";
 import JobCard from '../JobCard';
 
-const JobList = ({ jobs, total_num, loading, errorProps }) => {
+export const JobList = ({ jobs, total_num, loading, errorProps }) => {
 
     return (
         !loading ?

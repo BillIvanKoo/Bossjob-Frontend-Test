@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import "./Loading.css";
 import img from '../../../assets/images/ring-preloader.gif';
 
-let Loading = ({ loading }) => (
+export const Loading = ({ loading }) => (
     loading ?
         <div className="loaderContainer">
             <img src={img} alt='loading' />

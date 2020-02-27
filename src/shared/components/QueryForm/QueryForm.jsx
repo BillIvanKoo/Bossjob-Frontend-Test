@@ -5,11 +5,12 @@ import search from "../../../assets/images/search.svg";
 import "./QueryForm.css";
 import { changeQuery, changePage, getJobs } from "../../../actions";
 
-const QueryForm = ({query, changeQuery, changePage, page, getJobs}) => {
+export const QueryForm = ({query, changeQuery, changePage, page, getJobs}) => {
     const [submitThrottle, setSubmitThrottle] = useState(null);
     
     const handleSubmit = () => {
         if (submitThrottle === null) {
+            // changing page automatically makes the api call, see App.js
             page === 1 ? getJobs() : changePage(1);
             setSubmitThrottle(setTimeout(()=>{
                 setSubmitThrottle(null)
