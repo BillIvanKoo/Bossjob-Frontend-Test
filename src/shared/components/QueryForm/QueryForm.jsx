@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux';
 import search from "../../../assets/images/search.svg";
 
@@ -6,9 +6,15 @@ import "./QueryForm.css";
 import { changeQuery, changePage, getJobs } from "../../../actions";
 
 const QueryForm = ({query, changeQuery, changePage, page, getJobs}) => {
+    const [submitThrottle, setSubmitThrottle] = useState(null);
     
     const handleSubmit = () => {
-        page === 1 ? getJobs() : changePage(1) 
+        if (submitThrottle === null) {
+            page === 1 ? getJobs() : changePage(1);
+            setSubmitThrottle(setTimeout(()=>{
+                setSubmitThrottle(null)
+            }, 1000))
+        } 
     }
     
     return (
