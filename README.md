@@ -1,61 +1,33 @@
 # Bossjob Frontend Test
 
-## Instruction
-Please implement the job list page as per design (job-list-design.jpg). 
-Please use this git repository as a starter kit. This has been created using CRA.
-**UI library is strongly discouraged**.
+By [Bill Ivan Kooslarto](mailto:kooslarto.bill.ivan@gmail.com)
 
-The app should be able to do as follow:
-1. Listing the first 12 jobs
-2. Able to search for job by title or company name
-3. Use redux && (redux-saga ~~|| redux-thunk~~) to store the application states
-4. Pagination is neccessary - reusable component
-5. Feel free to upgrade the react version to use hooks
-6. There will be additional point by building the project from scratch instead of using CRA (Keep it clean)
+## Instructions
+1. Navigate to [repo](https://github.com/BillIvanKoo/Bossjob-Frontend-Test)
+2. Clone locally using `git clone git@github.com:BillIvanKoo/Bossjob-Frontend-Test.git`
+3. Install dependencies using `npm install`
+4. Run test using `npm test`
+5. Start the server using `npm start`
+6. Navigate to app in [browser](http://localhost:3000)
+7. Enjoy!
 
-## API Endpoint
-Please use this provided api to retrieve the job list. 
-`https://search.bossjob.com/api/v1/search/job_filter?size=10&query=`
+## Requirements
+#### Listing the first 12 jobs
+When the app is first mounted or when the active page is changed, an action is dispatched to make an API call to get the corresponding job data. The data is then stored in the redux store. The `JobList` component access the redux store and display the data.
+#### Able to search for job by title or company name
+Component `QueryForm` has an input and a submit button. Upon pressing enter in the input or clicking the button, an action will be dispatched to get the corresponding jobs to be displayed.
+#### Use redux && (redux-saga ~~|| redux-thunk~~) to store the application states
+Redux is used as the state management. Redux saga is used as a middleware to handle the asynchronous API calls.
+#### Pagination is neccessary - reusable component
+Component `Pagination` displays:
+* the first and last page
+* previous/next arrow where applicable
+* +-2 range of the current page, or 5 earliest/latest pages where applicable.
 
-```
-size - to specify number of jobs to be retrieved (default is 4)
-query - to specify which job title / company name to be retrieved
-page - to specify the page to be retrieved
+When a page number / an arrow is clicked. Action is dispatched to get the corresponding jobs to be displayed.
 
-```
-------
-
-Below will be the necessary key that you will use from the JSON response
-
-```
-{
-    "message": "OK",
-    "data": {
-        "jobs": [
-            {
-                "id": 17348,
-                "degree": "Diploma",
-                "job_title": "System Engineer",
-                "job_country": "Philippines",
-                "job_type": "Full-time",
-                "job_location": "Makati",
-                "salary_range_from": 30000,
-                "salary_range_to": 40000,
-                "company_name": "wealth access inc.",
-                "company_location": "Makati",
-                "xp_lvl": "3 - 5 years",
-            }
-        ],
-        "page": 1,
-        "size": 10,
-        "total_num": 265,
-        "sort": 1
-
-    }
-}
-```
-
-You could ignore the rest of the keys.
-
-================
-
+## Extras
+* Throttle on the submission process in the `QueryForm` (when searching based on job title/company name), can only make at most 1 submission per second.
+* Error handling for when there is something wrong when calling the API.
+* Loading spinner when the API is making request.
+* Updated header title and favicon.ico.
