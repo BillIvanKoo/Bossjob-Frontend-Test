@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import "./Pagination.css"
 import { changePage } from "../../../actions"
 
-const Pagination = ({ page, changePage, total_pages }) => {
+const Pagination = ({ page, changePage, total_pages, errorProps }) => {
 
     function range(size, startAt) {
         return [...Array(size).keys()].map(i => i + startAt);
@@ -28,22 +28,25 @@ const Pagination = ({ page, changePage, total_pages }) => {
     }
 
     return(
-        <div className="Pagination">
-            {page === 1 ? <></> : <button onClick={()=>{changePage(page-1)}}>{"<"}</button>}
-            {page > 4 ? <><button onClick={()=>{changePage(1)}}>1</button><button disabled>...</button></>:<></>}
-            {handlePageRange().map(pageNo => (
-                <button className={pageNo===page?"active":null} key={pageNo} onClick={()=>{changePage(pageNo)}}>{pageNo}</button>
-            ))}
-            {page < total_pages - 3 ? <><button disabled>...</button><button onClick={()=>{changePage(total_pages)}}>{total_pages}</button></>:<></>}
-            {page === total_pages || !(total_pages > 0) ?  <></>:<button onClick={()=>{changePage(page+1)}}>{">"}</button>}
-        </div>
+        errorProps === null ?
+            <div className="Pagination">
+                {page === 1 ? <></> : <button onClick={()=>{changePage(page-1)}}>{"<"}</button>}
+                {page > 4 ? <><button onClick={()=>{changePage(1)}}>1</button><button disabled>...</button></>:<></>}
+                {handlePageRange().map(pageNo => (
+                    <button className={pageNo===page?"active":null} key={pageNo} onClick={()=>{changePage(pageNo)}}>{pageNo}</button>
+                ))}
+                {page < total_pages - 3 ? <><button disabled>...</button><button onClick={()=>{changePage(total_pages)}}>{total_pages}</button></>:<></>}
+                {page === total_pages || !(total_pages > 0) ?  <></>:<button onClick={()=>{changePage(page+1)}}>{">"}</button>}
+            </div>
+        : null
     )
     
 }
 
-const mapStateToProps = ({ page, total_pages }) => ({
+const mapStateToProps = ({ page, total_pages, error }) => ({
     page,
     total_pages,
+    errorProps: error
 })
 
 const mapDispatchToProps = {

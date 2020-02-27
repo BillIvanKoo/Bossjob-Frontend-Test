@@ -10,10 +10,6 @@ import Loading from './shared/components/Loading';
 import QueryForm from './shared/components/QueryForm';
 
 const App = ({page, getJobs}) => {
-  
-  useEffect(() => {
-    getJobs()
-  }, [])
 
   useEffect(() => {
     getJobs()

@@ -1,4 +1,4 @@
-import { GET_JOBS, JOBS_RECEIVED, CHANGE_QUERY, CHANGE_PAGE } from "../actions/constants"
+import { GET_JOBS, JOBS_RECEIVED, CHANGE_QUERY, CHANGE_PAGE, JOBS_REQUEST_FAILED } from "../actions/constants"
 
 const initialState = {
     jobs: [],
@@ -8,6 +8,7 @@ const initialState = {
     total_pages: 0,
     size: 12,
     query: "",
+    error: null
 }
 
 export default (state = initialState, action) => {
@@ -22,7 +23,8 @@ export default (state = initialState, action) => {
                 jobs,
                 page,
                 total_num,
-                total_pages
+                total_pages,
+                error: null,
             }
         case CHANGE_QUERY:
             return {
@@ -33,6 +35,12 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 page: action.page
+            }
+        case JOBS_REQUEST_FAILED:
+            return {
+                ...state,
+                error: action.error,
+                loading: false
             }
         default:
             return state;
