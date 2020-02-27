@@ -35,16 +35,17 @@ td div {
 }
 
 .CompanyTimeWrapper {
-    margin: 15px 0;
+    margin: 10px 0 20px;
     font-size: 14px;
 }
 
 .Company {
     width: 50%;
+    margin-right: 5px;
 }
 
 .CompanyLogo {
-    margin: 0 5px;
-    width: 35px;
+    margin-left: 5px;
+    width: 38px;
     height: auto;
 }
